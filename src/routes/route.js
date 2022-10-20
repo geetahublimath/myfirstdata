@@ -41,6 +41,32 @@ router.get("/test-api-6" , function(req, res) {
     res.send({a:56, b: 45})
 })
 
+router.get('/sol1',function(req,res){
+    let arr=[1,2,3,5,6]
+    total=0
+    for(i of arr){
+        total +=i
+    }
+    let lastnum=arr.pop()
+    let sum=lastnum*(lastnum+1)/2
+    let missingnumber=sum-total
+    console.log(missingnumber)
+    res.send({data:missingnumber})
+})
+router.get('/sol2',function(req,res){
+    let arr=[33,34,35,37,38,39]
+    let len=arr.length
+    let total=0
+    for(let element in arr){
+        total +=arr[element]
+    }
+    let firstnum=arr[0]
+    let lastnum=arr.pop()
+    let sum=(len+1)*(firstnum+lastnum)/2
+    let missingnumber=sum-total
+    res.send({data:missingnumber})
+})
+
 router.post("/test-post", function(req, res) {
     res.send([ 23, 45 , 6])
 })
@@ -69,5 +95,42 @@ router.post("/test-post-4", function(req, res) {
     arr.push(ele)
     res.send(  { msg: arr , status: true }  )
 })
+
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ]
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ]
+       },
+   ]
+   router.post('/players', function (req, res) {
+    let newplayer=req.body.nplayer
+    players.push(newplayer)
+    res.send(  { data: players , status: true }  )
+})
+
 
 module.exports = router;
